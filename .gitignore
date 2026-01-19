@@ -1,0 +1,7 @@
+legacy_toon/
+target/
+
+
+# Added by cargo
+
+/target
