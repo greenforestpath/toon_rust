@@ -116,7 +116,10 @@ fn read_input(args: &Args) -> Result<String> {
     if args.is_stdin() {
         read_stdin()
     } else {
-        let path = args.input.as_ref().expect("input path should exist");
+        let path = args
+            .input
+            .as_ref()
+            .ok_or_else(|| ToonError::message("No input file specified"))?;
         read_file(path)
     }
 }

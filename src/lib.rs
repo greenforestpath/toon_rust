@@ -7,7 +7,10 @@ pub mod error;
 pub mod options;
 pub mod shared;
 
-pub use decode::{decode, decode_from_lines, decode_stream, decode_stream_sync};
+pub use decode::{
+    decode, decode_from_lines, decode_stream, decode_stream_sync, try_decode,
+    try_decode_from_lines, try_decode_stream, try_decode_stream_sync,
+};
 pub use encode::{encode, encode_lines, encode_stream_events};
 pub use options::{
     DecodeOptions, DecodeStreamOptions, EncodeOptions, EncodeReplacer, ResolvedDecodeOptions,
