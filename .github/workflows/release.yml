@@ -34,22 +34,27 @@ jobs:
             target: x86_64-unknown-linux-gnu
             artifact: tr
             asset: tr-linux-amd64
-          - os: ubuntu-24.04-arm
+            cross: false
+          - os: ubuntu-latest
             target: aarch64-unknown-linux-gnu
             artifact: tr
             asset: tr-linux-arm64
-          - os: macos-15-intel
+            cross: true
+          - os: macos-13
             target: x86_64-apple-darwin
             artifact: tr
             asset: tr-darwin-amd64
+            cross: false
           - os: macos-14
             target: aarch64-apple-darwin
             artifact: tr
             asset: tr-darwin-arm64
+            cross: false
           - os: windows-latest
             target: x86_64-pc-windows-msvc
             artifact: tr.exe
             asset: tr-windows-amd64.exe
+            cross: false
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
       - uses: dtolnay/rust-toolchain@f7ccc83f9ed1e5b9c81d8a67d7ad1a747e22a561
@@ -59,6 +64,13 @@ jobs:
       - uses: Swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5
         with:
           key: release-${{ matrix.target }}
+      - name: Install cross-compilation tools
+        if: matrix.cross
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-aarch64-linux-gnu
+          echo '[target.aarch64-unknown-linux-gnu]' >> ~/.cargo/config.toml
+          echo 'linker = "aarch64-linux-gnu-gcc"' >> ~/.cargo/config.toml
       - name: Build release binary
         run: cargo build --release --target ${{ matrix.target }}
 
