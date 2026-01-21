@@ -154,6 +154,38 @@ fn json_eq(left: &serde_json::Value, right: &serde_json::Value) -> bool {
     }
 }
 
+#[test]
+fn expand_paths_respects_quoted_dotted_array_key() {
+    let input = "\"a.b\"[1]: 1";
+    let options = Some(DecodeOptions {
+        indent: None,
+        strict: Some(true),
+        expand_paths: Some(ExpandPathsMode::Safe),
+    });
+
+    let value = decode(input, options);
+    let actual = json_value_to_serde(value);
+    let expected = serde_json::json!({ "a.b": [1] });
+
+    assert_json_eq(&actual, &expected, "quoted dotted array key");
+}
+
+#[test]
+fn expand_paths_respects_quoted_dotted_tabular_field() {
+    let input = "items[1]{\"a.b\"}:\n  1";
+    let options = Some(DecodeOptions {
+        indent: None,
+        strict: Some(true),
+        expand_paths: Some(ExpandPathsMode::Safe),
+    });
+
+    let value = decode(input, options);
+    let actual = json_value_to_serde(value);
+    let expected = serde_json::json!({ "items": [ { "a.b": 1 } ] });
+
+    assert_json_eq(&actual, &expected, "quoted dotted tabular field");
+}
+
 fn fixture_root() -> PathBuf {
     if let Ok(path) = std::env::var("TOON_SPEC_FIXTURES") {
         return PathBuf::from(path);

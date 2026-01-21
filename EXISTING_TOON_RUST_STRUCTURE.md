@@ -41,10 +41,11 @@ This is the **live checklist** for completing spec extraction. Update as new fin
 - [x] Captured exact CLI success/error wording from `packages/cli/test/`.
 - [x] Located spec fixtures under `legacy_spec/tests/fixtures`.
 - [x] Vendored spec fixtures to `tests/fixtures/spec`.
+- [x] Audited reference tests for edge-case behaviors (quoted dotted keys in array headers/fields).
 
 ### Remaining
 
-- [ ] Capture any edge-case behaviors hidden in tests (normalization, folding, decoding).
+- [ ] (none)
 
 ---
 
