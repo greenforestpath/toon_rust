@@ -5,9 +5,23 @@ edition = "2024"
 rust-version = "1.85"
 description = "TOON reference implementation in Rust (JSON <-> TOON)"
 license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/Dicklesworthstone/toon_rust"
 repository = "https://github.com/Dicklesworthstone/toon_rust"
+documentation = "https://docs.rs/toon_rust"
 keywords = ["cli", "json", "serialization", "llm", "encoding"]
 categories = ["command-line-utilities", "encoding"]
+exclude = [
+    ".beads/",
+    ".github/",
+    "perf.data",
+    "AGENTS.md",
+    "EXISTING_TOON_RUST_STRUCTURE.md",
+    "PLAN_TO_PORT_TOON_RUST_TO_RUST.md",
+    "PROPOSED_ARCHITECTURE.md",
+    "tests/golden_outputs/",
+    "toon_illustration.webp",
+]
 
 [[bin]]
 name = "tr"
