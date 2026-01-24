@@ -306,9 +306,9 @@ Common flags:
 - `--delimiter <,|\\t|\\|>`
 - `--indent <n>`
 - `--no-strict`
-- `--keyFolding <off|safe>`
-- `--flattenDepth <n>`
-- `--expandPaths <off|safe>`
+- `--key-folding <off|safe>`
+- `--flatten-depth <n>`
+- `--expand-paths <off|safe>`
 - `--stats` (encode only)
 
 ---
@@ -400,7 +400,7 @@ Algorithm:
 Safety checks prevent folding when:
 - A sibling key matches the folded path
 - The path contains non-identifier characters
-- Folding would exceed `flattenDepth`
+- Folding would exceed `--flatten-depth`
 
 ### Decoding Algorithm
 
@@ -450,7 +450,7 @@ The streaming design allows processing arbitrarily large TOON files with constan
 
 ```
            +--------------------+
-           |    CLI (tru)   |
+           |      CLI (tru)     |
            |  args + IO + stats |
            +---------+----------+
                      |

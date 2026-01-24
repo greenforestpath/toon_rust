@@ -21,13 +21,13 @@ then implement from that spec, preserving edge cases and output semantics.
 
 ## Background: Legacy TOON
 
-The TypeScript implementation (`toon-format/toon`) provides:
+The legacy TypeScript implementation provides:
 
-- **Core library** (`@toon-format/toon`): encode/decode for JSON <-> TOON
+- **Core library** (legacy reference): encode/decode for JSON <-> TOON
 - **Streaming decode** via event streams (no full in-memory object required)
 - **Key folding** (safe, depth-limited)
 - **Path expansion** (safe, optional, non-streaming)
-- **CLI** (`@toon-format/cli`) with stdin/stdout streaming and token stats
+- **CLI** (legacy reference) with stdin/stdout streaming and token stats
 
 This Rust port must preserve:
 

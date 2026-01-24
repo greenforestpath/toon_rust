@@ -54,7 +54,7 @@ The `tru` (toon_rust) CLI achieves **full feature parity** with the TypeScript r
 
 ## Performance
 
-Measured with hyperfine against `@toon-format/cli` v2.1.0:
+Measured with hyperfine against the legacy TypeScript CLI (v2.1.0):
 
 | Operation | TypeScript | Rust | Improvement |
 |-----------|------------|------|-------------|
