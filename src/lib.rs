@@ -24,8 +24,8 @@ pub use options::{
 /// # Errors
 /// Returns an error if the JSON input is invalid.
 pub fn json_to_toon(json: &str) -> crate::error::Result<String> {
-    let value: serde_json::Value =
-        serde_json::from_str(json).map_err(|err| crate::error::ToonError::message(err.to_string()))?;
+    let value: serde_json::Value = serde_json::from_str(json)
+        .map_err(|err| crate::error::ToonError::message(err.to_string()))?;
     Ok(encode(value, None))
 }
 
@@ -168,8 +168,9 @@ impl From<JsonValue> for serde_json::Value {
         match value {
             JsonValue::Primitive(p) => match p {
                 StringOrNumberOrBoolOrNull::String(value) => Self::String(value),
-                StringOrNumberOrBoolOrNull::Number(value) => serde_json::Number::from_f64(value)
-                    .map_or(Self::Null, Self::Number),
+                StringOrNumberOrBoolOrNull::Number(value) => {
+                    serde_json::Number::from_f64(value).map_or(Self::Null, Self::Number)
+                }
                 StringOrNumberOrBoolOrNull::Bool(value) => Self::Bool(value),
                 StringOrNumberOrBoolOrNull::Null => Self::Null,
             },
