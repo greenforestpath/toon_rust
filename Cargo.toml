@@ -45,7 +45,7 @@ tracing = "0.1.44"
 tracing-subscriber = { version = "0.3.22", features = ["env-filter", "fmt", "json"] }
 
 # Time
-chrono = { version = "0.4.43", features = ["serde"] }
+chrono = { version = "0.4", features = ["serde"] }
 
 # Add domain-specific crates as needed
 
